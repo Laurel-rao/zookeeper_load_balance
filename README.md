@@ -31,6 +31,16 @@ except ImportError:  # pragma: nocover
 HAS_FNCTL = False
 ```
 
+### zookeeper优化
+
+1. zookeeper 需修改配置，放开并发限制
+```
+maxClientCnxns=0
+
+```
+    1. 0代表不限制
+    2. 默认为 60 表示单个IP最多60个连接
+
 ## 博客, 项目说明
 
 ```
