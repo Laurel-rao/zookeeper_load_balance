@@ -3,13 +3,16 @@ import time
 from threading import Thread
 
 import requests
+from retry import retry
 
 from client.proxy_choice import get_lease_node
 
 
+@retry(tries=3, delay=2)
 def run():
     time.sleep(random.random() * 10)
     base_url = get_lease_node()
+    
     resp = requests.get("http://" + base_url)
     # print(resp.text)
 
