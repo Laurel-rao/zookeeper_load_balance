@@ -22,7 +22,7 @@ def create_zoo_client():
 
 def get_lease_node():
     client = create_zoo_client()
-    nodes = client.get_children(Config.BASE_PATH)
+    nodes = client.get_children(Config.BASE_ALIVE_PATH)
     cur_num = -1
     choice_path = ""
 
@@ -38,6 +38,7 @@ def get_lease_node():
             # print(session_num, cur_num)
             if cur_num > session_num:
                 choice_path = node
+                cur_num = session_num
     if not choice_path:
         raise ValueError("Can't get server host %s" % nodes)
     # print(choice_path)
